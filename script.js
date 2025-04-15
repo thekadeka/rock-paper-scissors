@@ -38,26 +38,7 @@ function getComputerChoice() {
     
 
 
-// Step 2 Logic to get the human choice
 
-
-function getHumanChoice() {
-    let finalHumanChoice;
-    let firstHumanChoice;
-    firstHumanChoice = prompt("Choose one: paper, rock, scissors");
-
-    finalHumanChoice = firstHumanChoice.toLowerCase();
-       
-        
-
-    console.log(finalHumanChoice);
-    return finalHumanChoice;
-
-
-
-
-
-}
 
 
 
@@ -73,85 +54,54 @@ function getHumanChoice() {
 
 // Step 4 Logic to play a single round
 
+
 function playRound(humanChoice, computerChoice){
-    if (humanChoice === "paper" && computerChoice === "rock") {
+    if (humanChoice === "paperBtn" && computerChoice === "rock") {
         console.log("You win! Paper beats rock");
         return "human";
     }
-    else if (humanChoice === "paper" && computerChoice === "scissors") {
+    else if (humanChoice === "paperBtn" && computerChoice === "scissors") {
         console.log("You lose! scissors beats paper ");
         return "computer";
 
     }
 
-    if (humanChoice === "rock" && computerChoice === "scissors") {
+    if (humanChoice === "rockBtn" && computerChoice === "scissors") {
         console.log("You win! Rock beats scissors");
         return "human";
     }
-    else if (humanChoice === "rock" && computerChoice === "paper") {
+    else if (humanChoice === "rockBtn" && computerChoice === "paper") {
         console.log("You lose! Paper beats rock ");
         return "computer";
 
     }
 
-    if (humanChoice === "scissors" && computerChoice === "paper") {
+    if (humanChoice === "scissorsBtn" && computerChoice === "paper") {
         console.log("You win! Scissors beats paper");
         return "human";
     }
-    else if (humanChoice === "scissors" && computerChoice === "rock") {
+    else if (humanChoice === "scissorsBtn" && computerChoice === "rock") {
         console.log("You lose! Rock beats scissors ");
         return "computer";
 
     }
 
-    if (humanChoice === computerChoice) {
-
-        console.log("Its a tie!!")
-    }
-}
-
-
-
-
-
-
-
-// Step 5 Logic to play the entire game
-
-function playGame() {
-let roundsPlayed = 0
-let humanScore = 0;
-let computerScore = 0;
-
-while ( roundsPlayed < 5) {
-    let result = playRound(getHumanChoice(), getComputerChoice());
-    if (result === "human") humanScore++;
-    else if (result === "computer") computerScore++; 
-    roundsPlayed++;
-
-   
-
-
-
 
 }
 
-if (humanScore > computerScore) {
-    console.log("You have won the game!!");
-    
-}
 
-else if (humanScore < computerScore) {
-    console.log("You have lost the game!")
+// Button references
+
+const buttons = document.querySelectorAll('button');
 
 
-}
+buttons.forEach(button =>  {    
 
-else {
-    console.log("Its a tie!")
-}
+button.addEventListener('click', (event) => {
+
+playRound(event.target.id, getComputerChoice() );
+}); 
+});
 
 
-}
 
- playGame();
