@@ -1,3 +1,10 @@
+// References
+
+const buttons = document.querySelectorAll('button');
+
+const results = document.querySelector('#results')
+
+
 
 
 // Step 1 Logic for get the computer choice
@@ -27,20 +34,10 @@ function getComputerChoice() {
    }
    
 
-   console.log(computerChoice);
+   results.textContent = `Computer choice is ${computerChoice}.` 
    return computerChoice;
 
 }
-
-
-
-
-    
-
-
-
-
-
 
 
 
@@ -57,42 +54,42 @@ function getComputerChoice() {
 
 function playRound(humanChoice, computerChoice){
     if (humanChoice === "paperBtn" && computerChoice === "rock") {
-        console.log("You win! Paper beats rock");
+        results.textContent += "\nYou win! Paper beats rock";
         return "human";
     }
     else if (humanChoice === "paperBtn" && computerChoice === "scissors") {
-        console.log("You lose! scissors beats paper ");
+        results.textContent += "\nYou lose! scissors beats paper ";
         return "computer";
 
     }
 
     if (humanChoice === "rockBtn" && computerChoice === "scissors") {
-        console.log("You win! Rock beats scissors");
+        results.textContent += "\nYou win! Rock beats scissors"
         return "human";
     }
     else if (humanChoice === "rockBtn" && computerChoice === "paper") {
-        console.log("You lose! Paper beats rock ");
+        results.textContent += "\nYou lose! Paper beats rock ";
         return "computer";
 
     }
 
     if (humanChoice === "scissorsBtn" && computerChoice === "paper") {
-        console.log("You win! Scissors beats paper");
+        results.textContent += "\nYou win! Scissors beats paper"
         return "human";
     }
     else if (humanChoice === "scissorsBtn" && computerChoice === "rock") {
-        console.log("You lose! Rock beats scissors ");
+        results.textContent += "\nYou lose! Rock beats scissors ";
         return "computer";
 
     }
 
-
+    else {
+        results.textContent += "\nIts a tie ";
 }
-
+}
 
 // Button references
 
-const buttons = document.querySelectorAll('button');
 
 
 buttons.forEach(button =>  {    
@@ -102,6 +99,5 @@ button.addEventListener('click', (event) => {
 playRound(event.target.id, getComputerChoice() );
 }); 
 });
-
 
 
