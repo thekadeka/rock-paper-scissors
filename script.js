@@ -7,7 +7,7 @@ const results = document.querySelector('#results')
 
 
 
-// Step 1 Logic for get the computer choice
+// Logic for get the computer choice
 
 
 function getRandomInt (max) {
@@ -41,18 +41,16 @@ function getComputerChoice() {
 
 
 
-// Step 3 Declare the players score variable
-
-
-
-
-
-
-
-// Step 4 Logic to play a single round
+// Logic to play a single round
 
 
 function playRound(humanChoice, computerChoice){
+
+   
+
+
+
+
     if (humanChoice === "paperBtn" && computerChoice === "rock") {
         results.textContent += "\nYou win! Paper beats rock";
         return "human";
@@ -92,12 +90,77 @@ function playRound(humanChoice, computerChoice){
 
 
 
-buttons.forEach(button =>  {    
 
-button.addEventListener('click', (event) => {
 
-playRound(event.target.id, getComputerChoice() );
-}); 
-});
+
+function playGame() {
+let roundsPlayed = 0;
+let humanScore = 0;
+let computerScore = 0;
+
+
+
+    // Add event listener to each button
+    buttons.forEach(button =>  {    
+        button.addEventListener('click', (event) => {
+
+
+        if (roundsPlayed < 5 ) { 
+        
+            result = playRound(event.target.id, getComputerChoice() );
+            roundsPlayed++;
+        
+
+            //check the result
+            if (result === "human") {
+                humanScore++;
+            }
+
+            else if (result === "computer") {
+                computerScore++;
+
+            }
+
+        // Update the displayed scores 
+        results.textContent += `\nHuman score: ${humanScore} Computer score: ${computerScore}`;
+
+        if (roundsPlayed === 5) {
+
+            if (computerScore > humanScore) {
+                results.textContent = `Game over and you lose! Final score - Human: ${humanScore}, Computer: ${computerScore}`;
+
+
+            }
+
+            else if (humanScore > computerScore) {
+                results.textContent = `Game over and you win! Final score - Human: ${humanScore}, Computer: ${computerScore}`;
+
+            }
+
+
+
+            
+        }
+
+        }
+
+         
+        }); 
+        });
+
+       
+
+       
+
+        
+
+
+
+
+
+
+}
+
+playGame();
 
 
